@@ -11,20 +11,20 @@ const getAllUsers = async (req, res) => {
 
 const getUserById = async (req, res) => {
     try {
-        const product = await userServices.getUserById(req.params.id);
-        if (!product) {
+        const user = await userServices.getUserById(req.params.id);
+        if (!user) {
             return res.status(404).json({ message: 'Product not found' });
         }
-        res.json(product);
+        res.json(user);
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
 };
 
-const rejisterUser = async (req, res) => {
+const registerUser = async (req, res) => {
     try {
-        const product = await userServices.registerUser(req.body);
-        res.status(201).json(product);
+        const user = await userServices.registerUser(req.body);
+        res.status(201).json(user);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
@@ -32,11 +32,11 @@ const rejisterUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
     try {
-        const product = await userServices.updateUser(req.params.id, req.body);
-        if (!product) {
+        const user = await userServices.updateUser(req.params.id, req.body);
+        if (!user) {
             return res.status(404).json({ message: 'Product not found' });
         }
-        res.json(product);
+        res.json(user);
     } catch (error) {
         res.status(400).json({ message: error.message });
     }
@@ -44,8 +44,8 @@ const updateUser = async (req, res) => {
 
 const delteUser = async (req, res) => {
     try {
-        const product = await userServices.deleteUser(req.params.id);
-        if (!product) {
+        const user = await userServices.deleteUser(req.params.id);
+        if (!user) {
             return res.status(404).json({ message: 'Product not found' });
         }
         res.json({ message: 'Product deleted successfully' });
@@ -57,7 +57,7 @@ const delteUser = async (req, res) => {
 module.exports = {
     getAllUsers,
     getUserById,
-    rejisterUser,
+    registerUser,
     updateUser,
     delteUser
 };

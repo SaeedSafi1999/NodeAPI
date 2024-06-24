@@ -16,10 +16,11 @@ app.use(bodyParser.json());
 mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
-
 // Routes
 app.use('/api/products', productRoutes);
-app.use('/api/user', userRoutes);
+
+app.use('/api', userRoutes);
+
 // Swagger setup
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 

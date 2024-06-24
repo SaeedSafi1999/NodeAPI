@@ -1,10 +1,20 @@
-const userServices = require('../services/UserServices');
+const express = require('express');
+const router = express.Router();
+const UserController = require('../Controller/UserController');
+
+/**
+ * @swagger
+ * tags:
+ *   name: Users
+ *   description: User management API
+ */
 
 /**
  * @swagger
  * /users:
  *   get:
  *     summary: Retrieve a list of users
+ *     tags: [Users]
  *     responses:
  *       200:
  *         description: A list of users
@@ -15,26 +25,21 @@ const userServices = require('../services/UserServices');
  *               items:
  *                 $ref: '#/components/schemas/User'
  */
-const getAllUsers = async (req, res) => {
-    try {
-        const products = await userServices.getAllUsers();
-        res.json(products);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
+router.get('/', UserController.getAllUsers);
 
 /**
  * @swagger
  * /users/{id}:
  *   get:
  *     summary: Retrieve a single user by ID
+ *     tags: [Users]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: string
+ *         description: The user ID
  *     responses:
  *       200:
  *         description: A single user
@@ -45,23 +50,14 @@ const getAllUsers = async (req, res) => {
  *       404:
  *         description: User not found
  */
-const getUserById = async (req, res) => {
-    try {
-        const product = await userServices.getUserById(req.params.id);
-        if (!product) {
-            return res.status(404).json({ message: 'Product not found' });
-        }
-        res.json(product);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
+router.get('/id', UserController.getUserById);
 
 /**
  * @swagger
  * /users:
  *   post:
  *     summary: Register a new user
+ *     tags: [Users]
  *     requestBody:
  *       required: true
  *       content:
@@ -78,26 +74,21 @@ const getUserById = async (req, res) => {
  *       400:
  *         description: Bad request
  */
-const rejisterUser = async (req, res) => {
-    try {
-        const product = await userServices.registerUser(req.body);
-        res.status(201).json(product);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-};
+router.post('/', UserController.registerUser);
 
 /**
  * @swagger
  * /users/{id}:
  *   put:
  *     summary: Update an existing user
+ *     tags: [Users]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: string
+ *         description: The user ID
  *     requestBody:
  *       required: true
  *       content:
@@ -116,29 +107,21 @@ const rejisterUser = async (req, res) => {
  *       400:
  *         description: Bad request
  */
-const updateUser = async (req, res) => {
-    try {
-        const product = await userServices.updateUser(req.params.id, req.body);
-        if (!product) {
-            return res.status(404).json({ message: 'Product not found' });
-        }
-        res.json(product);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
-    }
-};
+router.put('/id', UserController.updateUser);
 
 /**
  * @swagger
  * /users/{id}:
  *   delete:
  *     summary: Delete a user by ID
+ *     tags: [Users]
  *     parameters:
  *       - in: path
  *         name: id
  *         required: true
  *         schema:
  *           type: string
+ *         description: The user ID
  *     responses:
  *       200:
  *         description: User deleted successfully
@@ -147,22 +130,6 @@ const updateUser = async (req, res) => {
  *       500:
  *         description: Internal server error
  */
-const delteUser = async (req, res) => {
-    try {
-        const product = await userServices.deleteUser(req.params.id);
-        if (!product) {
-            return res.status(404).json({ message: 'Product not found' });
-        }
-        res.json({ message: 'Product deleted successfully' });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-};
+//router.delete('/users/:id', UserController.deleteUser);
 
-module.exports = {
-    getAllUsers,
-    getUserById,
-    rejisterUser,
-    updateUser,
-    delteUser
-};
+module.exports = router;

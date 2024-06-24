@@ -1,6 +1,5 @@
 const User = require('../models/User');
-import crypto from 'crypto'
-
+const crypto = require('crypto');
 
 const getAllUsers = async () => {
     return await User.find({});
@@ -11,7 +10,7 @@ const getUserById = async (id) => {
 };
 
 const registerUser = async (UserData) => {
-    UserData.PAs = crypto.createHash('sha256').update(UserData.Password).digest('hex');
+    UserData.Password = crypto.createHash('sha256').update(UserData.Password).digest('hex');
     const User = new User(productData);
     return await User.save();
 };
