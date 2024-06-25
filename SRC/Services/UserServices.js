@@ -1,32 +1,26 @@
 const User = require('../models/User');
+const JWT =require('../Services/jwtService');
 const crypto = require('crypto');
 
-const getAllUsers = async () => {
-    return await User.find({});
+const getAllUsers =  () => {
+    return  User.find({});
 };
 
-const getUserById = async (id) => {
-    return await User.findById(id);
+const getUserById =  (id) => {
+    return  User.findById(id);
 };
 
-const registerUser = async (UserData) => {
-    UserData.Password = crypto.createHash('sha256').update(UserData.Password).digest('hex');
-    const User = new User(productData);
-    return await User.save();
+const updateUser =  (id, UserData) => {
+    return  User.findByIdAndUpdate(id, UserData, { new: true });
 };
 
-const updateUser = async (id, UserData) => {
-    return await User.findByIdAndUpdate(id, Userdata, { new: true });
-};
-
-const deleteUser = async (id) => {
-    return await User.findByIdAndDelete(id);
+const deleteUser =  (id) => {
+    return  User.findByIdAndDelete(id);
 };
 
 module.exports = {
     getAllUsers,
     getUserById,
-    registerUser,
     updateUser,
     deleteUser
 };

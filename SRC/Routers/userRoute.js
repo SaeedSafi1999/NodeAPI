@@ -11,7 +11,7 @@ const UserController = require('../Controller/UserController');
 
 /**
  * @swagger
- * /users:
+ * /api/users:
  *   get:
  *     summary: Retrieve a list of users
  *     tags: [Users]
@@ -29,7 +29,7 @@ router.get('/', UserController.getAllUsers);
 
 /**
  * @swagger
- * /users/{id}:
+ * /api/users/{id}:
  *   get:
  *     summary: Retrieve a single user by ID
  *     tags: [Users]
@@ -50,35 +50,12 @@ router.get('/', UserController.getAllUsers);
  *       404:
  *         description: User not found
  */
-router.get('/id', UserController.getUserById);
+router.get('/:id', UserController.getUserById);
+
 
 /**
  * @swagger
- * /users:
- *   post:
- *     summary: Register a new user
- *     tags: [Users]
- *     requestBody:
- *       required: true
- *       content:
- *         application/json:
- *           schema:
- *             $ref: '#/components/schemas/User'
- *     responses:
- *       201:
- *         description: User created successfully
- *         content:
- *           application/json:
- *             schema:
- *               $ref: '#/components/schemas/User'
- *       400:
- *         description: Bad request
- */
-router.post('/', UserController.registerUser);
-
-/**
- * @swagger
- * /users/{id}:
+ * /api/users/{id}:
  *   put:
  *     summary: Update an existing user
  *     tags: [Users]
@@ -95,6 +72,12 @@ router.post('/', UserController.registerUser);
  *         application/json:
  *           schema:
  *             $ref: '#/components/schemas/User'
+ *           examples:
+ *             user:
+ *               value:
+ *                 name: Jane Doe
+ *                 email: janedoe@example.com
+ *                 password: newpassword123
  *     responses:
  *       200:
  *         description: User updated successfully
@@ -107,11 +90,11 @@ router.post('/', UserController.registerUser);
  *       400:
  *         description: Bad request
  */
-router.put('/id', UserController.updateUser);
+router.put('/:id', UserController.updateUser);
 
 /**
  * @swagger
- * /users/{id}:
+ * /api/users/{id}:
  *   delete:
  *     summary: Delete a user by ID
  *     tags: [Users]
@@ -130,6 +113,9 @@ router.put('/id', UserController.updateUser);
  *       500:
  *         description: Internal server error
  */
-//router.delete('/users/:id', UserController.deleteUser);
+// router.delete('/:id', UserController.deleteUser);
+
+
+
 
 module.exports = router;
