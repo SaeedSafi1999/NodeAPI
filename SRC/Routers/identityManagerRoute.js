@@ -14,7 +14,7 @@ const identityManagerController = require('../Controller/identityManagerControll
  * /api/IdentityManager/Login:
  *   post:
  *     summary: Authenticate user
- *     tags: [Authentication]
+ *     tags: [IdentityManager]
  *     requestBody:
  *       required: true
  *       content:
@@ -75,7 +75,7 @@ router.post('/Login', identityManagerController.login);
  * /api/IdentityManager/Register:
  *   post:
  *     summary: Register user
- *     tags: [Authentication]
+ *     tags: [IdentityManager]
  *     requestBody:
  *       required: true
  *       content:
