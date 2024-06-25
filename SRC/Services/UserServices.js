@@ -10,16 +10,29 @@ const getAllUsers = async () => {
 
 };
 
-const getUserById =  (id) => {
-    return  User.findById(id);
+const getUserById = async (id) => {
+    const operation = new ServiceResult();
+    const user = await  User.findById(id);
+    if(user === null)
+        return operation.NotFound("user not found");
+    return operation.Ok(user);
 };
 
-const updateUser =  (id, UserData) => {
-    return  User.findByIdAndUpdate(id, UserData, { new: true });
+const updateUser = async (id, UserData) => {
+    const operation = new ServiceResult();
+    const updatedUser = await User.findByIdAndUpdate(id, UserData, { new: true });
+    if(updatedUser === null)
+        return operation.NotFound("User not found");
+    return operation.Ok(updatedUser);
 };
 
-const deleteUser =  (id) => {
-    return  User.findByIdAndDelete(id);
+const deleteUser = (id) => {
+    const operation = new ServiceResult();
+    const user =   User.findByIdAndDelete(id);
+    if(user === null)
+        return operation.NotFound("User not found");
+    return operation.Ok(null);
+
 };
 
 module.exports = {

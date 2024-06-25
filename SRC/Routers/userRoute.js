@@ -76,8 +76,8 @@ router.get('/:id', UserController.getUserById);
  *             user:
  *               value:
  *                 name: Jane Doe
- *                 email: janedoe@example.com
- *                 password: newpassword123
+ *                 PhoneNumber: 0912...
+ *                 UserName: saeed safi
  *     responses:
  *       200:
  *         description: User updated successfully
@@ -113,7 +113,7 @@ router.put('/:id', UserController.updateUser);
  *       500:
  *         description: Internal server error
  */
-// router.delete('/:id', UserController.deleteUser);
+ router.delete('/:id', UserController.deleteUser);
 
 
 
