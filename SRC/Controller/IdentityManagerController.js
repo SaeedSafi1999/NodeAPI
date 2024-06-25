@@ -1,6 +1,4 @@
 const AuthService = require('../services/AuthService');
-const JWT = require("../Services/jwtService");
-const User = require("../models/User");
 
 //Login
 const login = async (req, res) => {
