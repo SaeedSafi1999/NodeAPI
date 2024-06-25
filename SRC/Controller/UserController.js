@@ -1,12 +1,8 @@
 const userServices = require('../services/UserServices');
 
 const getAllUsers = async (req, res) => {
-    try {
-        const User = await userServices.getAllUsers();
-        res.json(User);
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
+        const users = await userServices.getAllUsers();
+        res.json(users);
 };
 
 const getUserById = async (req, res) => {
@@ -18,15 +14,6 @@ const getUserById = async (req, res) => {
         res.json(user);
     } catch (error) {
         res.status(500).json({ message: error.message });
-    }
-};
-
-const registerUser = async (req, res) => {
-    try {
-        const user = await userServices.registerUser(req.body);
-        res.status(201).json(user);
-    } catch (error) {
-        res.status(400).json({ message: error.message });
     }
 };
 
@@ -57,7 +44,6 @@ const delteUser = async (req, res) => {
 module.exports = {
     getAllUsers,
     getUserById,
-    registerUser,
     updateUser,
     delteUser
 };

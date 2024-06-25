@@ -1,9 +1,13 @@
 const User = require('../models/User');
 const JWT =require('../Services/jwtService');
 const crypto = require('crypto');
+const ServiceResult = require('../Utils/ServiceResult');
 
-const getAllUsers =  () => {
-    return  User.find({});
+const getAllUsers = async () => {
+    const operation = new ServiceResult();
+    const users = await  User.find({});
+    return operation.Ok([users]);
+
 };
 
 const getUserById =  (id) => {
