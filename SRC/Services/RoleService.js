@@ -17,7 +17,7 @@ const CreateRole = async (RoleData) =>{
 
 const GetAllRoles = async ()=>{
     const operation = new ServiceResult();
-    const roles = await Role.find({});
+    const roles = await Role.find({}).populate('User');
     return operation.Ok(roles);
 }
 
