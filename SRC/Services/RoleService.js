@@ -21,8 +21,15 @@ const GetAllRoles = async ()=>{
     return operation.Ok(roles);
 }
 
+const DeleteUser = async (id) => {
+    const operation = new ServiceResult();
+    const result = await Role.findByIdAndDelete({id});
+    return operation.Ok(result);
+}
+
 
 module.exports = {
   CreateRole,
-  GetAllRoles
+  GetAllRoles,
+    DeleteUser,
 };
