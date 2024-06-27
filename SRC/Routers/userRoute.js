@@ -92,6 +92,7 @@ router.get('/:id', UserController.getUserById);
  */
 router.put('/:id', UserController.updateUser);
 
+
 /**
  * @swagger
  * /api/users/{id}:
