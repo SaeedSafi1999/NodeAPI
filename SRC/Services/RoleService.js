@@ -21,6 +21,7 @@ const GetAllRoles = async ()=>{
     return operation.Ok(roles);
 }
 
+
 module.exports = {
   CreateRole,
   GetAllRoles
