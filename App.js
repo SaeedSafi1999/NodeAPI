@@ -15,6 +15,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(express.json());
 
+
 // Database connection
 mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
