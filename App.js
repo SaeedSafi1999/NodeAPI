@@ -20,6 +20,7 @@ mongoose.connect(config.mongoURI, { useNewUrlParser: true, useUnifiedTopology: t
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log(err));
 
+
 // Routes
 app.use('/api/users', userRoutes);
 app.use('/api/IdentityManager', AuthRoutes);
