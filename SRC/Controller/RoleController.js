@@ -11,7 +11,7 @@ const GetAllRoles = async (req,res) => {
     const roles = await RoleServices.GetAllRoles();
     res.json(roles);
 }
-
+//export
 module.exports = {
   CreateRole,
   GetAllRoles
