@@ -25,6 +25,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/IdentityManager', AuthRoutes);
 app.use('/api/Role',RoleRoutes)
 
+
 // Swagger setup
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
 
