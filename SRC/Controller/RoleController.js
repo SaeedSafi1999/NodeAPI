@@ -6,6 +6,7 @@ const CreateRole = async (req,res) =>{
     res.json(role);
 }
 
+//Get Roles
 const GetAllRoles = async (req,res) => {
     const roles = await RoleServices.GetAllRoles();
     res.json(roles);
