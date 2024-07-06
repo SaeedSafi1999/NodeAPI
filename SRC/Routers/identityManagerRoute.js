@@ -92,6 +92,7 @@ router.post('/Login', identityManagerController.login);
  *               Password:
  *                 type: string
  *                 example: 123456789
+ *
  *     responses:
  *       200:
  *         description: Successful Register
