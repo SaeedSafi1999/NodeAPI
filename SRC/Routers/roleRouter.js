@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const RoleController = require('../Controller/RoleController');
+const AuthToken = require('../Middlewares/JWTMiddleware')
 
 /**
  * @swagger
@@ -55,6 +56,6 @@ router.post('/Create', RoleController.CreateRole);
  *       500:
  *         description: Internal server error
  */
-router.get('/GetAll', RoleController.GetAllRoles);
+router.get('/GetAll',AuthToken ,RoleController.GetAllRoles);
 
 module.exports = router;

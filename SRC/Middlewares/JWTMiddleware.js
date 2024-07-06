@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const { JWT_SECRET } = process.env;
+const config = require('../Config/Config')
+const { JWT_SECRET } = config.SecretKey;
 
 const authenticateToken = (req, res, next) => {
     const authHeader = req.headers.authorization;
@@ -11,7 +12,7 @@ const authenticateToken = (req, res, next) => {
 
     jwt.verify(token, JWT_SECRET, (err, user) => {
         if (err) {
-            return res.status(403).json({ message: 'Invalid token' });
+            return res.status(403).json({ message: 'UnAuthorized access' });
         }
         req.user = user;
         next();
