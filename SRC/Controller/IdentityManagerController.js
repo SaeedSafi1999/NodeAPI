@@ -8,6 +8,7 @@ const login = async (req, res) => {
         res.json(result);
 };
 
+
 //Register
 const Register = async (req,res) =>{
         const user = await AuthService.registerUser(req.body);
