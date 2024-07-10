@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
-const config = require('../Config/Config')
+const config = require('../Config/Config');
 const { JWT_SECRET } = config.SecretKey;
 
-const authenticateToken = (req, res, next) => {
+const authenticateToken = (requiredRole) => (req, res, next) => {
     const authHeader = req.headers.authorization;
     const token = authHeader && authHeader.split(' ')[1];
 
@@ -10,11 +10,17 @@ const authenticateToken = (req, res, next) => {
         return res.status(401).json({ message: 'Access token not provided' });
     }
 
-    jwt.verify(token, JWT_SECRET, (err, user) => {
+    jwt.verify(token, JWT_SECRET, (err, decodedToken) => {
         if (err) {
-            return res.status(403).json({ message: 'UnAuthorized access' });
+            return res.status(403).json({ message: 'Unauthorized access' });
         }
-        req.user = user;
+        const { roles } = decodedToken;
+
+        if (!roles || !roles.includes(requiredRole)) {
+            return res.status(403).json({ message: 'Insufficient permissions' });
+        }
+
+        req.user = decodedToken;
         next();
     });
 };
