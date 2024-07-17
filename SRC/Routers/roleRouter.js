@@ -56,6 +56,6 @@ router.post('/Create', RoleController.CreateRole);
  *       500:
  *         description: Internal server error
  */
-router.get('/GetAll',AuthToken("admin") ,RoleController.GetAllRoles);
+router.get('/GetAll',AuthToken("6688eac48d8c1b17ca70849b") ,RoleController.GetAllRoles);
 
 module.exports = router;

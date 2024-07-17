@@ -20,8 +20,7 @@ const authenticateUser = async (PhoneNumber, Password) => {
         }
 
         // Generate JWT token
-        const token = jwtService.generateToken({ id: user._id, PhoneNumber: user.PhoneNumber });
-
+        const token = jwtService.generateToken({ id: user._id, PhoneNumber: user.PhoneNumber,Role:user.Role });
         return operation.Ok({ token, user: { id: user._id, UserName: user.UserName, PhoneNumber: user.PhoneNumber } });
 
     } catch (error) {
